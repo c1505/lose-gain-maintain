@@ -1,7 +1,7 @@
 class CreateWeights < ActiveRecord::Migration[5.1]
   def change
     create_table :weights do |t|
-      t.string :pounds
+      t.float :pounds
 
       t.timestamps
     end
