@@ -1,4 +1,7 @@
 # README
+Make a goal to lose, gain, or maintain weight.  This application will give suggested
+goals as well as appropriate warnings to stay on track.  
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
