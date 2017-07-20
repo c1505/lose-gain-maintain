@@ -1,5 +1,5 @@
 <% @weights.each do |weight| %>
   Weight: <%= weight.pounds %>
-  Date: <%= weight.created_at %>
+  Date: <%= weight.date %>
   <%= link_to "Edit", edit_weight_path(weight) %></br>
 <% end %>

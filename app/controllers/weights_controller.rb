@@ -30,6 +30,6 @@ class WeightsController < ApplicationController
   
   private
   def weight_params
-    params.require(:weight).permit(:pounds)
+    params.require(:weight).permit(:pounds, :date)
   end
 end

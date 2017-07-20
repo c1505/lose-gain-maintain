@@ -1,5 +1,5 @@
-<%= form_for @weight do |f| %>
-  <%= f.label :pounds %>
-  <%= f.text_field :pounds %>
+<%= simple_form_for @weight do |f| %>
+  <%= f.input :pounds %>
+  <%= f.input :date %>
   <%= f.submit :Submit %>
 <% end %>
