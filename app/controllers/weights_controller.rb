@@ -31,7 +31,7 @@ class WeightsController < ApplicationController
   def destroy
     @weight = Weight.find(params[:id])
     @weight.destroy
-    redirect_to root_url flash[:notice] = "Weight deleted"
+    redirect_to root_url flash[:alert] = "Weight deleted"
   end
   
   private
