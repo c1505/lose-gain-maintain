@@ -6,8 +6,8 @@
 <strong>Change from beginning of goal:</strong></br>
 <h4>Weights</h4>
 <% @weights.each do |weight| %>
-  Weight: <%= weight.pounds.round(1) %>
-  Date: <%= weight.date %>
+  Weight: <%= weight.pounds.round(1) %> |
+  Date: <%= weight.date.strftime("%B, %d, %Y") %> |
   <%= link_to "Edit", edit_weight_path(weight) %></br>
 <% end %>
 
