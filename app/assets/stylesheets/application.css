@@ -21,3 +21,9 @@
 h4 {
     text-decoration: underline;
 }
+
+body {
+    margin-top: 60px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
