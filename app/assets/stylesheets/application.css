@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+.notes {
+    font-size: 75%;
+    color: gray;
+    
+}
+h4 {
+    text-decoration: underline;
+}
