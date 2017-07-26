@@ -13,7 +13,7 @@ class WeightsController < ApplicationController
   end
   
   def index
-    @weights = Weight.all
+    @weights = Weight.order(date: :desc)
   end
   
   def edit
