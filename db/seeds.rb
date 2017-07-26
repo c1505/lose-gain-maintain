@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+pounds = 175.0
+date = Time.now - 1.month
+
+20.times do
+  pounds = pounds += 0.1
+  date = date + 1.day
+  Weight.create(pounds: pounds, date: date )
+end
