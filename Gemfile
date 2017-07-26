@@ -46,7 +46,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
+  gem 'database_cleaner', '~> 1.6', '>= 1.5.3'
 end
 
 group :development do
