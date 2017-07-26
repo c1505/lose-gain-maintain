@@ -23,9 +23,15 @@ class WeightsController < ApplicationController
   def update
     @weight = Weight.find(params[:id])
     if @weight.update_attributes(weight_params)
-      flash[:success] = "Weight Updated"
+      flash[:notice] = "Weight Updated"
       redirect_to weights_path
     end
+  end
+  
+  def destroy
+    @weight = Weight.find(params[:id])
+    @weight.destroy
+    redirect_to root_url flash[:notice] = "Weight deleted"
   end
   
   private
