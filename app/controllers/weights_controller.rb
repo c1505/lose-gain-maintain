@@ -1,19 +1,23 @@
 class WeightsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @weight = Weight.new
   end
   
   def create
     @weight = Weight.new(weight_params)
+    @weight.user = current_user
     if @weight.save
+      flash[:notice] = "Weight Saved"
       redirect_to weights_path
     else
-      render 'new'
+      flash[:notice] = "There was an error.  Please try again"
+      render 'new' 
     end
   end
   
   def index
-    @weights = Weight.order(date: :desc)
+    @weights = current_user.weights.order(date: :desc)
   end
   
   def edit

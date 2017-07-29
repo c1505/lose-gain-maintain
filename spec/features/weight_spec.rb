@@ -1,6 +1,10 @@
 require "rails_helper"
 
 feature 'enter weight' do
+  before(:each) do 
+    user = User.create(email: "example@example.com", password: "password")
+    sign_in user
+  end
   scenario 'enter and submit weight' do
     visit new_weight_path
     fill_in "Pounds", :with => 175.3
