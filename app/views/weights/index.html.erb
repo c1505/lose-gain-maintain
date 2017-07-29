@@ -3,14 +3,12 @@
 <strong>Last 7 days average:</strong><%= Weight.average(7, current_user).round(1) %></br>  
 
 <strong>Change from last week*:</strong><%= Weight.change_from_last_week(current_user).round(1) %></br>
-<strong>Change from beginning of goal:</strong></br>
 <h4>Weights</h4>
 <% @weights.each do |weight| %>
   Weight: <%= weight.pounds.round(1) %> |
   Date: <%= weight.date.strftime("%B, %d, %Y") %> |
   <%= link_to "Edit", edit_weight_path(weight) %></br>
 <% end %>
-
 
 <p class="notes">*Change from last week by default takes the average of the last 7 days and compares
 to the 7 days before that.</class>
