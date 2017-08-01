@@ -16,10 +16,10 @@ function drawChart(pounds, date) {
   var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: date,
+        labels: date.reverse(),
         datasets: [{
             label: 'Pounds',
-            data: pounds,
+            data: pounds.reverse(),
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
             ],
