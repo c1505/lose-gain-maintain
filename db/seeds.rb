@@ -9,7 +9,7 @@ pounds = 175.0
 date = Time.now
 
 20.times do
-  pounds = pounds += 0.1
+  pounds = pounds += rand(-0.3..0.5)
   date = date - 1.day
-  Weight.create(pounds: pounds, date: date )
+  Weight.create(pounds: pounds, date: date, user_id: 1 )
 end
