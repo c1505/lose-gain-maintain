@@ -18,6 +18,10 @@ class WeightsController < ApplicationController
   
   def index
     @weights = current_user.weights.order(date: :desc)
+    respond_to do |format|
+      format.html
+      format.json { render :json => @weights }
+    end
   end
   
   def edit
