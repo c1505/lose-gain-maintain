@@ -1,5 +1,6 @@
 class Weight < ApplicationRecord
   belongs_to :user
+  has_many :competitions
   
   def self.average(days, user)
     weights = Weight.where(date: (Time.current.midnight - days.days).. Time.current, user_id: user.id)

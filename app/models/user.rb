@@ -4,4 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :weights
+  has_many :competitions_users
+  has_many :competitions, through: :competitions_users
 end
