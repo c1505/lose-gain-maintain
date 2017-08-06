@@ -3,6 +3,14 @@ class CompetitionsController < ApplicationController
   
   def show
     @competition = Competition.find(params[:id])
+    unless @competition.users.include?(current_user)
+      flash[:alert] = "You are not a member of this competition"
+      redirect_to competitions_path 
+    end
+  end
+  
+  def index
+    @competitions = current_user.competitions
   end
   
   def new

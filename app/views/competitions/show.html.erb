@@ -1,5 +1,5 @@
-<strong>Start Date:</strong><%= @competition.start_date %></br>
-<strong>End Date:</strong><%= @competition.end_date %></br>
+<strong>Start Date: </strong><%= @competition.start_date.strftime("%B, %d, %Y") %></br>
+<strong>End Date: </strong><%= @competition.end_date.strftime("%B, %d, %Y") %></br>
 <% @competition.users.each do |user| %>
   <%= user.email %>
   <strong>Starting Weight:</strong><%= @competition.starting_weight(user).round(1) %>
