@@ -2,8 +2,8 @@
 <strong>End Date: </strong><%= @competition.end_date.strftime("%B, %d, %Y") %></br>
 <% @competition.users.each do |user| %>
   <%= user.email %>
-  <strong>Starting Weight:</strong><%= @competition.starting_weight(user).round(1) %>
-  <strong>Last Weight:</strong><%= @competition.last_weight(user).round(1) %>
+  <strong>Starting Weight:</strong><%= @competition.starting_weight(user).try(:round, 1) %>
+  <strong>Last Weight:</strong><%= @competition.last_weight(user).try(:round, 1) %>
   <strong>Percent Change:</strong> <%= @competition.percent_change(user) %> %</br>
 <% end %>
 <% if @competition.host == current_user %>
