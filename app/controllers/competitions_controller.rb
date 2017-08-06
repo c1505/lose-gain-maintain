@@ -36,6 +36,17 @@ class CompetitionsController < ApplicationController
       redirect_to competitions_path
     end
   end
+  
+  def update
+    @competition = Competition.find(params[:id])
+    if @competition.host = current_user
+      @competition.update_attributes(competition_params)
+      redirect_to @competition
+    else
+      flash[:alert] = "You must be the host to edit this competition"
+      redirect_to competitions_path
+    end
+  end
 
 
   def description
