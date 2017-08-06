@@ -1,3 +1,4 @@
 <% @competitions.each do |competition| %>
-  <%= link_to "Competition #{competition.id}", competition_path(competition) %> | Start Date: <%= competition.start_date.strftime("%B, %d, %Y") %>
+  <%= link_to "Competition #{competition.id}", competition_path(competition) %> | Start Date: <%= competition.start_date.strftime("%B, %d, %Y") %></br>
 <% end %>
+<%= link_to "New Competition", new_competition_path %>

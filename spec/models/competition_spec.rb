@@ -11,7 +11,7 @@ RSpec.describe Competition, type: :model do
       user.weights = [weight_1, weight_2, weight_3]
       expect( competition.starting_weight(user) ).to eq (170)
     end
-    it "returns starting weight when the date is not today" do 
+    it "returns starting weight when the date is not today" do
       competition = Competition.new(start_date: Time.current - 1.day, end_date: Time.current + 10.days)
       user = User.create(email: "email@email.com", password: "password")
       weight_1 = Weight.new(pounds: 170, date: Time.current)
@@ -22,7 +22,7 @@ RSpec.describe Competition, type: :model do
     end
   end
   describe "#last_weight" do
-    it "returns last weight" do 
+    it "returns last weight" do
       competition = Competition.new(start_date: Time.current - 10.days, end_date: Time.current + 10.days)
       user = User.create(email: "email@email.com", password: "password")
       weight_1 = Weight.new(pounds: 170, date: Time.current)
@@ -31,8 +31,8 @@ RSpec.describe Competition, type: :model do
       user.weights = [weight_1, weight_2, weight_3]
       expect( competition.last_weight(user) ).to eq (170)
     end
-    
-    it "returns last competition weight after competition has ended" do 
+
+    it "returns last competition weight after competition has ended" do
       competition = Competition.new(start_date: Time.current - 10.days, end_date: Time.current + 5.minutes)
       user = User.create(email: "email@email.com", password: "password")
       weight_1 = Weight.new(pounds: 170, date: Time.current)
@@ -51,7 +51,7 @@ RSpec.describe Competition, type: :model do
       weight_2 = Weight.new(pounds: 169, date: Time.current - 2.days)
       weight_3 = Weight.new(pounds: 168, date: Time.current - 1.day)
       user.weights = [weight_1, weight_2, weight_3]
-      expect( competition.percent_change(user) ).to eq (-0.6)
+      expect( competition.percent_change(user) ).to eq (0.6)
     end
   end
 end

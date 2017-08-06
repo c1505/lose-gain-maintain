@@ -4,5 +4,8 @@
   <%= user.email %>
   <strong>Starting Weight:</strong><%= @competition.starting_weight(user).round(1) %>
   <strong>Last Weight:</strong><%= @competition.last_weight(user).round(1) %>
-  <strong>Percent Change:</strong><%= @competition.percent_change(user) %>
+  <strong>Percent Change:</strong> <%= @competition.percent_change(user) %> %</br>
+<% end %>
+<% if @competition.host == current_user %>
+  <%= link_to "Edit", edit_competition_path %>
 <% end %>

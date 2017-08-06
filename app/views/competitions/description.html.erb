@@ -1,0 +1,8 @@
+<strong>Host: </strong><%= @competition.host.email %></br>
+<strong>Start Date: </strong><%= @competition.start_date.strftime("%B, %d, %Y") %></br>
+<strong>End Date: </strong><%= @competition.end_date.strftime("%B, %d, %Y") %></br>
+
+<%= simple_form_for(@competition, :url => competition_join_path(@competition)) do %>
+
+  <%= submit_tag( "Join Game") %>
+<% end %>
