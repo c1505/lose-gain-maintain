@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 pounds = 175.0
 date = Time.now
-
+User.create(email: "email@email.com", password: "password")
 20.times do
   pounds = pounds += rand(-0.3..0.5)
   date = date - 1.day
