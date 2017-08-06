@@ -1,0 +1,5 @@
+<%= @competition.start_date %></br>
+<%= @competition.end_date %></br>
+<% @competition.users.each do |user| %>
+  <%= user.email %>
+<% end %>
