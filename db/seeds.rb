@@ -13,3 +13,11 @@ User.create(email: "email@email.com", password: "password")
   date = date - 1.day
   Weight.create(pounds: pounds, date: date, user_id: 1 )
 end
+
+pounds = 160.0
+User.create(email: "user2@email.com", password: "password")
+20.times do
+  pounds = pounds += rand(-0.3..0.5)
+  date = date - 1.day
+  Weight.create(pounds: pounds, date: date, user_id: 2 )
+end
