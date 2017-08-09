@@ -20,24 +20,18 @@ function drawPercentsChart(data,dates) {
             data: Object.values(data.datasets[0])[0],
             fill: false,
             spanGaps: true,
-            backgroundColor: [
-                'rgba(240,50,50,1)',
-            ],
-            borderColor: [
-                'rgba(240,50,50,1)',
-            ],
+            backgroundColor: 'rgba(240,50,50,1)',
+          
+            borderColor: 'rgba(240,50,50,1)',
             borderWidth: 1
         }, {
           label: Object.keys(data.datasets[1])[0],
           data: Object.values(data.datasets[1])[0],
           fill: false,
           spanGaps: true,
-          backgroundColor: [
-              'rgba(55,55,189,1)',
-          ],
-          borderColor: [
-              'rgba(55,55,189,1)',
-          ],
+          backgroundColor: 'rgba(55,55,189,1)',
+          borderColor: 'rgba(55,55,189,1)',
+          
           borderWidth: 1
       }]
     },
