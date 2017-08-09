@@ -55,7 +55,7 @@ RSpec.describe Competition, type: :model do
     end
   end
   
-  describe "percent_changes" do
+  describe "percent_changes" do #Delete if failing and not useful in refactoring
     it "returns the percent change from the start weight at each time point" do
       competition = Competition.new(start_date: Time.current - 10.days, end_date: Time.current + 5.minutes)
       user = User.create(email: "email@email.com", password: "password")
@@ -74,7 +74,7 @@ RSpec.describe Competition, type: :model do
     end
   end
   
-  describe "percent_changes_all" do
+  describe "percent_changes_all" do #Can delete if failing.  
     it "returns the percent change from the start weight at each time point" do
       competition = Competition.new(start_date: Time.current - 10.days, end_date: Time.current + 5.minutes)
       user_1 = User.create(email: "email@email.com", password: "password")

@@ -7,6 +7,10 @@ class CompetitionsController < ApplicationController
       flash[:alert] = "You are not a member of this competition"
       redirect_to competitions_path
     end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @competition.format_for_graph }
+    end
   end
 
   def index

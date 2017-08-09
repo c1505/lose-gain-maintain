@@ -57,15 +57,10 @@ class Competition < ApplicationRecord
     hash_of_weights
   end
   
-
-  
   def percent_changes_all
     users.map do |user|
       [ user.email, percent_changes(user)]
     end
   end
-
-  
-
 
 end

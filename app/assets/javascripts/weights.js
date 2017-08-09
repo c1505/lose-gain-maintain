@@ -1,4 +1,4 @@
-$( document ).on('turbolinks:load', function() {
+$(".weights.index").ready(function() {
   var promise = getWeights();
   promise.done(function (data) {
     var pounds = data.map(function(x) {
