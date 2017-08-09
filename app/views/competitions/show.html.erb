@@ -19,3 +19,9 @@
 <% if @competition.host == current_user %>
   <%= link_to "Edit", edit_competition_path %>
 <% end %>
+
+<div id="competitions" data-url="<%=@competition.id%>"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+<div class="col-md-5">
+  <canvas id="percentage" width="200" height="150"></canvas>
+</div>
