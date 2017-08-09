@@ -2,7 +2,6 @@ $(".competitions.show").ready(function() {
   var id = $("#competitions").data('url')
   var promise = getPercents(id);
   promise.done(function (data) {
-    debugger;
     var dates = data.dates.map(function(x) {
       return x.split("T")[0]
     })
@@ -11,8 +10,6 @@ $(".competitions.show").ready(function() {
 });
 
 function drawPercentsChart(data,dates) {
-  // debugger;
-  
   var ctx = document.getElementById("percentage").getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'line',
