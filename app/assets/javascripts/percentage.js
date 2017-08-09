@@ -19,6 +19,7 @@ function drawPercentsChart(data,dates) {
             label: Object.keys(data.datasets[0])[0],
             data: Object.values(data.datasets[0])[0],
             fill: false,
+            spanGaps: true,
             backgroundColor: [
                 'rgba(240,50,50,1)',
             ],
@@ -30,6 +31,7 @@ function drawPercentsChart(data,dates) {
           label: Object.keys(data.datasets[1])[0],
           data: Object.values(data.datasets[1])[0],
           fill: false,
+          spanGaps: true,
           backgroundColor: [
               'rgba(55,55,189,1)',
           ],
