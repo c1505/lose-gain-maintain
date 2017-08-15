@@ -39,7 +39,7 @@ class Competition < ApplicationRecord
   def add_nil_values
     percent_hash = percent_changes_all
     dataset = []
-    dates = users.map {|f| f.weights.where(date: start_date..end_date )}.flatten.group_by {|f| f.date}.keys.sort.map {|f| f.strftime("%B, %d, %Y") }
+    dates = competition_dates.map {|f| f.strftime("%B, %d, %Y") }
     dates.each do |date|
       user = 1
       percent_hash.each do |user_data|
