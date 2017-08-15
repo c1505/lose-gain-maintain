@@ -11,7 +11,7 @@
   </tr>
   <% @competition.users.each do |user| %>
     <tr>
-      <td><%= user.email %></td>
+      <td><%= user.truncated_email %></td>
       <td><%= @competition.percent_change(user) %></td>
       <td><%= @competition.last_weight(user).try(:round, 1) %></td>
       <td><%= @competition.starting_weight(user).try(:round, 1) %></td>
