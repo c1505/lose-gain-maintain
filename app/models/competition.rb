@@ -13,7 +13,7 @@ class Competition < ApplicationRecord
 
   
   def format_for_graph
-    dates = users.map {|f| f.weights.where(date: start_date..end_date )}.flatten.group_by {|f| f.date}.keys.sort
+    dates = competition_dates
     hash = {}
     hash[:dates] = dates
     percents = add_nil_values.group_by {|f| f.keys}.map do |k, v|
@@ -30,10 +30,15 @@ class Competition < ApplicationRecord
   end
   
   private
+  
+  def competition_dates
+    users.map {|f| f.weights.where(date: start_date..end_date )}.flatten
+    .group_by {|f| f.date}.keys.map {|f| f.midnight}.uniq.sort
+  end
+  
   def add_nil_values
     percent_hash = percent_changes_all
     dataset = []
-    # user_weights = user.weights.where(date: start_date..end_date ).order(date: :asc)
     dates = users.map {|f| f.weights.where(date: start_date..end_date )}.flatten.group_by {|f| f.date}.keys.sort.map {|f| f.strftime("%B, %d, %Y") }
     dates.each do |date|
       user = 1
