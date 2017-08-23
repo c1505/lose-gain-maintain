@@ -67,9 +67,9 @@ RSpec.describe Competition, type: :model do
       weight_3 = Weight.new(pounds: 170, date: date_3)
       user.weights = [weight_1, weight_2, weight_3]
       expect( competition.send(:percent_changes, user) ).to eq ({
-        date_1=> 0.0,
-        date_2=> -0.6,
-        date_3=> 0.6,
+        date_1.strftime("%B, %d, %Y")=> 0.0,
+        date_2.strftime("%B, %d, %Y")=> -0.6,
+        date_3.strftime("%B, %d, %Y")=> 0.6,
       })
     end
   end
@@ -96,16 +96,16 @@ RSpec.describe Competition, type: :model do
       expect( competition.send(:percent_changes_all) ).to eq ([ 
         [ "email@email.com", 
           { 
-            date_1=> 0.0,
-            date_2=> -0.6,
-            date_3=> 0.6,
+            date_1.strftime("%B, %d, %Y")=> 0.0,
+            date_2.strftime("%B, %d, %Y")=> -0.6,
+            date_3.strftime("%B, %d, %Y")=> 0.6,
           }
         ],
         [ "email2@email.com", 
           { 
-            date_4=> 0.0,
-            date_1=> -0.6,
-            date_2=> -1.2,
+            date_4.strftime("%B, %d, %Y")=> 0.0,
+            date_1.strftime("%B, %d, %Y")=> -0.6,
+            date_2.strftime("%B, %d, %Y")=> -1.2,
           }
         ]
       ])
