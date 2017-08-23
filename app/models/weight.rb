@@ -31,7 +31,7 @@ class Weight < ApplicationRecord
   end
   
   def self.weekly_slope(user)
-    weights = self.weights(7, user).reverse
+    weights = Weight.where(date: (Time.current.midnight - 7.days).. Time.current.end_of_day, user_id: user.id).reverse
     return 0 if weights.blank?
     first_weight_date = weights.first.date
     days = weights.map do |weight|
