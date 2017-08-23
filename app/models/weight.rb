@@ -3,7 +3,7 @@ class Weight < ApplicationRecord
   has_many :competitions
   
   def self.average(days, user)
-    weights = Weight.where(date: (Time.current.midnight - days.days).. Time.current, user_id: user.id)
+    weights = self.weights(days, user)
     if weights.blank?
       0
     else
@@ -24,6 +24,22 @@ class Weight < ApplicationRecord
   
   def self.initial_weight(days)
     Weight.order(date: :desc).limit(days).map {|weight| weight.pounds }.reduce(:+) / days
+  end
+  
+  def self.weights(days, user)
+    Weight.where(date: (Time.current.midnight - days.days).. Time.current, user_id: user.id)
+  end
+  
+  def self.weekly_slope(user)
+    weights = self.weights(7, user).reverse
+    return 0 if weights.blank?
+    first_weight_date = weights.first.date
+    days = weights.map do |weight|
+      time_in_seconds = weight.date - first_weight_date
+      time_in_seconds / 60 / 60 / 24
+    end
+    regression = SimpleLinearRegression.new(days, weights.map {|weight| weight.pounds})
+    regression.slope * 7
   end
   
 end

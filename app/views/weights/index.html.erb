@@ -2,6 +2,7 @@
 <strong>Last 3 days average:</strong><%= Weight.average(3, current_user).round(1) %></br>
 <strong>Last 7 days average:</strong><%= Weight.average(7, current_user).round(1) %></br>  
 <strong>Change from last week*:</strong><%= Weight.change_from_last_week(current_user).round(1) %></br>
+<strong>Rate of change over last week**:</strong><%= Weight.weekly_slope(current_user).round(1) %></br>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
 <div class="col-md-5">
@@ -18,3 +19,4 @@
 <p class="notes">*Change from last week by default takes the average of the last 7 days and compares
 to the 7 days before that.</class>
 
+<p class="notes">*Calculated by linear regression of the last 7 days.</class>

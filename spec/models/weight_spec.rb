@@ -38,6 +38,55 @@ RSpec.describe Weight, type: :model do
     end
     
   end
+  describe "#weekly_slope" do 
+    it "returns a slope of weight loss over the last week" do
+      user = User.create(email: "example@email.com", password: "password")
+      date = Time.current
+      pounds = 100.0
+      7.times do
+        Weight.create(date: date, pounds: pounds, user_id: user.id)
+        date = date - 1.day
+        pounds = pounds + 1.0
+      end
+      expect(Weight.weekly_slope(user)).to eq (- 7)
+    end
+    
+    it "returns a slope of weight gain over the last week" do
+      user = User.create(email: "example@email.com", password: "password")
+      date = Time.current
+      pounds = 100.0
+      7.times do
+        Weight.create(date: date, pounds: pounds, user_id: user.id)
+        date = date - 1.day
+        pounds = pounds - 1.0
+      end
+      expect(Weight.weekly_slope(user)).to eq (7)
+    end
+    
+    it "returns a slope of weight gain over the last week when there aren't weights every day" do
+      user = User.create(email: "example@email.com", password: "password")
+      date = Time.current
+      pounds = 100.0
+      7.times do
+        Weight.create(date: date, pounds: pounds, user_id: user.id)
+        date = date - 2.days
+        pounds = pounds - 1.0
+      end
+      expect(Weight.weekly_slope(user)).to eq (3.5)
+    end
+    
+    it "returns zero if there are no weights logged in the last week" do
+      user = User.create(email: "example@email.com", password: "password")
+      date = Time.current - 10.days
+      pounds = 100.0
+      7.times do
+        Weight.create(date: date, pounds: pounds, user_id: user.id)
+        date = date - 2.days
+        pounds = pounds - 1.0
+      end
+      expect(Weight.weekly_slope(user)).to eq (0)
+    end
+  end
 
   
 end
