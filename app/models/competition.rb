@@ -11,7 +11,6 @@ class Competition < ApplicationRecord
     user.weights.where(date: start_date..end_date ).order(date: :asc).last.try(:pounds)
   end
 
-  
   def format_for_graph
     dates = competition_dates
     hash = {}
@@ -36,13 +35,15 @@ class Competition < ApplicationRecord
     .group_by {|f| f.date}.keys.map {|f| f.midnight}.uniq.sort
   end
   
+  def dates_as_strings
+    competition_dates.map {|f| f.strftime("%B, %d, %Y") }
+  end
+  
   def add_nil_values
-    percent_hash = percent_changes_all
     dataset = []
-    dates = competition_dates.map {|f| f.strftime("%B, %d, %Y") }
-    dates.each do |date|
+    dates_as_strings.each do |date|
       user = 1
-      percent_hash.each do |user_data|
+      percent_changes_all.each do |user_data|
         email = user_data[0]
         dataset << {email => user_data[1][date]}
         user += 1
