@@ -2,6 +2,16 @@ class Weight < ApplicationRecord
   belongs_to :user
   has_many :competitions
   
+  def self.to_csv
+    attributes = ["pounds", "date"]
+    CSV.generate(headers:true) do |csv|
+      csv << attributes
+      all.each do |weight|
+        csv << attributes.map { |attr| weight.send(attr) }
+      end
+    end
+  end
+  
   def self.average(days, user)
     weights = self.weights(days, user)
     if weights.blank?

@@ -16,6 +16,8 @@
   <%= link_to "Edit", edit_weight_path(weight) %></br>
 <% end %>
 
+<p><%= link_to "Download Weights CSV", weights_path + ".csv" %></p> 
+
 <p class="notes">*Change from last week by default takes the average of the last 7 days and compares
 to the 7 days before that.</class>
 

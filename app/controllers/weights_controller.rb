@@ -21,6 +21,7 @@ class WeightsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render :json => @weights }
+      format.csv { send_data @weights.to_csv, filename: "weights=#{Date.today}.csv" }
     end
   end
   
