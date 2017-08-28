@@ -11,31 +11,29 @@ class Competition < ApplicationRecord
     user.weights.where(date: start_date..end_date ).order(date: :asc).last.try(:pounds)
   end
 
-  
   def format_for_graph
-    dates = competition_dates
-    hash = {}
-    hash[:dates] = dates
+    # add nill values
+    # calculate percents
+    # trainsform to desired format
     percents = add_nil_values.group_by {|f| f.keys}.map do |k, v|
       { k[0] => v.map {|f| f.values[0]} }
     end
-    hash[:datasets] = percents
-    hash
+    {dates: competition_dates, datasets: percents}
   end
-  
+
   def percent_change(user)
     return unless starting_weight(user) && last_weight(user)
     percent = ( last_weight(user) - starting_weight(user) )  / starting_weight(user) * 100
     percent.round(1)
   end
-  
+
   private
-  
+
   def competition_dates
     users.map {|f| f.weights.where(date: start_date..end_date )}.flatten
     .group_by {|f| f.date}.keys.map {|f| f.midnight}.uniq.sort
   end
-  
+
   def add_nil_values
     percent_hash = percent_changes_all
     dataset = []
@@ -50,7 +48,7 @@ class Competition < ApplicationRecord
     end
     dataset
   end
-  
+
   def percent_changes(user)
     return unless starting_weight(user)
     starting_weight = starting_weight(user)
@@ -62,7 +60,7 @@ class Competition < ApplicationRecord
     end
     hash_of_weights
   end
-  
+
   def percent_changes_all
     users.map do |user|
       [ user.email, percent_changes(user)]
