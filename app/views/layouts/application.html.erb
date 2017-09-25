@@ -40,6 +40,7 @@
             <li><%= link_to "Weights", weights_path %></li>
             <li><%= link_to "Record Weight", new_weight_path %></li>
             <li><%= link_to "Competitions", competitions_path %></li>
+            <li><%= link_to "Goals", goals_path %></li>
             <% unless user_signed_in? %>
               <li><%= link_to "Sign In", new_user_session_path %></li>
               <li><%= link_to "Sign Up", new_user_registration_path %></li>

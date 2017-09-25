@@ -1,0 +1,5 @@
+<h3>Goals</h3>
+<% @goals.each do |goal| %>
+  <%= link_to "Goal #{goal.id}", goal %><br>
+<%end%><br>
+<%= link_to "New Goal", new_goal_path, class: "btn btn-primary" %>

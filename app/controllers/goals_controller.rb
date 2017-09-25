@@ -32,6 +32,10 @@ class GoalsController < ApplicationController
     @goal = Goal.find(params[:id])
   end
   
+  def index
+    @goals = current_user.goals
+  end
+  
   private
   def goal_params
     params.require(:goal).permit(:weight, :start_date, :target_date, :tolerence_above, :tolerence_below)
