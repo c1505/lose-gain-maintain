@@ -1,0 +1,8 @@
+<h3>Goal</h3>
+Weight: <%= @goal.weight %><br>
+Start Date: <%= @goal.start_date %><br>
+Target Date: <%= @goal.target_date %><br>
+Tolerence Above: <%= @goal.tolerence_above %><br>
+Tolerence Below: <%= @goal.tolerence_below %><br>
+
+Current Weight: <%= Weight.average(7, current_user).round(1) %><br>  

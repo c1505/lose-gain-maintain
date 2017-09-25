@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170805225214) do
+ActiveRecord::Schema.define(version: 20170925164735) do
 
   create_table "competitions", force: :cascade do |t|
     t.datetime "start_date"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20170805225214) do
     t.integer "user_id", null: false
     t.integer "competition_id", null: false
     t.index ["user_id", "competition_id"], name: "index_competitions_users_on_user_id_and_competition_id"
+  end
+
+  create_table "goals", force: :cascade do |t|
+    t.float "weight"
+    t.datetime "start_date"
+    t.datetime "target_date"
+    t.float "tolerence_above"
+    t.float "tolerence_below"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_goals_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

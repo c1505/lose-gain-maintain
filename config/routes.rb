@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     get '/description', to: 'competitions#description'
     patch '/join', to: 'competitions#join'
   end
+  resources :goals
 end
