@@ -9,6 +9,15 @@ class Goal < ApplicationRecord
     total.round(2)
   end
   
+  def next_week_goal_weight
+    total = Weight.average(7, user).round(1) + weekly_target_change
+    total.round(1)
+  end
+  
+  def target_caloric_change
+    ( weekly_target_change * 3500 / 7 ).round(1)
+  end
+  
   private
   def to_weeks(seconds)
     seconds / 60 / 60 / 24 / 7

@@ -7,5 +7,5 @@ Tolerence Below: <%= @goal.tolerence_below %><br>
 
 Current Weight: <%= Weight.average(7, current_user).round(1) %><br>  
 Target Change Per Week: <%= @goal.weekly_target_change %><br>
-Next Week Goal Weight: <%= Weight.average(7, current_user).round(1) + @goal.weekly_target_change %><br>
-Target daily caloric deficit/surplus: <%= @goal.weekly_target_change * 3500 / 7 %>
+Next Week Goal Weight: <%= @goal.next_week_goal_weight %><br>
+Target daily caloric deficit/surplus: <%= @goal.target_caloric_change %>
