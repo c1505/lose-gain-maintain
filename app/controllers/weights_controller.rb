@@ -18,9 +18,10 @@ class WeightsController < ApplicationController
   
   def index
     @weights = current_user.weights.order(date: :desc)
+  
     respond_to do |format|
       format.html
-      format.json { render :json => @weights }
+      format.json { render :json => {:weights => @weights } }
       format.csv { send_data @weights.to_csv, filename: "weights=#{Date.today}.csv" }
     end
   end
