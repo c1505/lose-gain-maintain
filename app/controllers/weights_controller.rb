@@ -17,8 +17,13 @@ class WeightsController < ApplicationController
   end
   
   def index
-    @weights = current_user.weights.order(date: :desc)
-  
+    if params[:months]
+      months = params[:months].to_i
+      date = Time.now - months.month
+      @weights = current_user.weights.where( date: (date..Time.now.midnight) ).order(date: :desc)
+    else
+      @weights = current_user.weights.order(date: :desc)
+    end
     respond_to do |format|
       format.html
       format.json { render :json => {:weights => @weights } }

@@ -4,8 +4,11 @@
 <strong>Change from last week*:</strong><%= Weight.change_from_last_week(current_user).round(1) %></br>
 <strong>Rate of change over last week**:</strong><%= Weight.weekly_slope(current_user).round(1) %></br>
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
 <div class="col-md-5">
+  <button id="month">1 Month</button>
+  <button id="threeMonths">3 Months</button>
   <canvas id="myChart" width="200" height="150"></canvas>
 </div>
 
