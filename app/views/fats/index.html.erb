@@ -1,0 +1,6 @@
+<% @fats.each do |f| %>
+  Skin Fold: <%= f.skinfold %> | 
+  Fat Percentage: <%= f.percentage %> | 
+  Date: <%= f.date.strftime("%B, %d, %Y") %> | 
+  <%= link_to "Edit", edit_fat_path(f) %></br>
+<% end %>

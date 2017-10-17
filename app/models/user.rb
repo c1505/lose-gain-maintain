@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :competitions_users
   has_many :competitions, through: :competitions_users
   has_many :goals
+  has_many :fats
   
   def truncated_email
     email.split("@")[0]
