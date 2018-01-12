@@ -20,7 +20,7 @@ class WeightsController < ApplicationController
     if params[:months]
       months = params[:months].to_i
       date = Time.now - months.month
-      @weights = current_user.weights.where( date: (date..Time.now.midnight) ).order(date: :desc)
+      @weights = current_user.weights.where( date: (date..Time.now.end_of_day) ).order(date: :desc)
     else
       @weights = current_user.weights.order(date: :desc)
     end
