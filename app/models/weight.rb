@@ -1,7 +1,7 @@
 class Weight < ApplicationRecord
   belongs_to :user
   has_many :competitions
-  
+
   def self.to_csv
     attributes = ["pounds", "date"]
     CSV.generate(headers:true) do |csv|
@@ -11,7 +11,7 @@ class Weight < ApplicationRecord
       end
     end
   end
-  
+
   def self.average(days, user)
     weights = self.weights(days, user)
     if weights.blank?
@@ -20,7 +20,7 @@ class Weight < ApplicationRecord
       weights.map {|weight| weight.pounds }.reduce(:+) / weights.count
     end
   end
-  
+
   def self.change_from_last_week(user)
     last_7 = Weight.average(7, user)
     previous_7 = Weight.where(date: (Time.current.midnight - 14.days).. Time.current.midnight - 7.days, user_id: user.id)
@@ -31,15 +31,15 @@ class Weight < ApplicationRecord
       last_7 - previous_7
     end
   end
-  
+
   def self.initial_weight(days)
     Weight.order(date: :desc).limit(days).map {|weight| weight.pounds }.reduce(:+) / days
   end
-  
+
   def self.weights(days, user)
     Weight.where(date: (Time.current.midnight - days.days).. Time.current, user_id: user.id)
   end
-  
+
   def self.weekly_slope(user)
     weights = Weight.where(date: (Time.current.midnight - 7.days).. Time.current.end_of_day, user_id: user.id).reverse
     return 0 if weights.blank?
@@ -51,5 +51,17 @@ class Weight < ApplicationRecord
     regression = SimpleLinearRegression.new(days, weights.map {|weight| weight.pounds})
     regression.slope * 7
   end
-  
+
+  def self.slope(user, number_of_days)
+    weights = Weight.where(date: (Time.current.midnight - number_of_days.days).. Time.current.end_of_day, user_id: user.id).reverse
+    return 0 if weights.blank?
+    first_weight_date = weights.first.date
+    days = weights.map do |weight|
+      time_in_seconds = weight.date - first_weight_date
+      time_in_seconds / 60 / 60 / 24
+    end
+    regression = SimpleLinearRegression.new(days, weights.map {|weight| weight.pounds})
+    regression.slope * 7
+  end
+
 end

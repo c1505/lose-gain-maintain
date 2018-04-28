@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     patch '/join', to: 'competitions#join'
   end
   resources :goals
+  get '/slope', to: 'weights#slope'
 end

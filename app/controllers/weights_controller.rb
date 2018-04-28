@@ -3,7 +3,7 @@ class WeightsController < ApplicationController
   def new
     @weight = Weight.new
   end
-  
+
   def create
     @weight = Weight.new(weight_params)
     @weight.user = current_user
@@ -12,10 +12,10 @@ class WeightsController < ApplicationController
       redirect_to weights_path
     else
       flash[:notice] = "There was an error.  Please try again"
-      render 'new' 
+      render 'new'
     end
   end
-  
+
   def index
     if params[:months]
       months = params[:months].to_i
@@ -30,11 +30,11 @@ class WeightsController < ApplicationController
       format.csv { send_data @weights.to_csv, filename: "weights=#{Date.today}.csv" }
     end
   end
-  
+
   def edit
     @weight = Weight.find(params[:id])
   end
-  
+
   def update
     @weight = Weight.find(params[:id])
     if @weight.update_attributes(weight_params)
@@ -42,13 +42,19 @@ class WeightsController < ApplicationController
       redirect_to weights_path
     end
   end
-  
+
   def destroy
     @weight = Weight.find(params[:id])
     @weight.destroy
     redirect_to root_url flash[:alert] = "Weight deleted"
   end
-  
+
+  def slope
+    if params[:days].to_i > 0
+      @slope_per_week = Weight.slope(current_user, params[:days].to_i)
+    end
+  end
+
   private
   def weight_params
     params.require(:weight).permit(:pounds, :date)
