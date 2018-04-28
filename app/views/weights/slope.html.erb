@@ -1,5 +1,5 @@
 <%= form_tag("/slope", method: "get") do %>
-  <%= label_tag(:q, "Calculate slope of weight change per week:") %>
+  <%= label_tag(:q, "Enter days to calculate slope of weight change:") %>
   <%= text_field_tag(:days, params["days"]) %>
   <%= submit_tag("Search") %>
 <% end %></br>
