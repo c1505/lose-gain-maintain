@@ -1,12 +1,14 @@
 $(".competitions.show").ready(function() {
   var id = $("#competitions").data('url')
   var promise = getPercents(id);
-  promise.done(function(data) {
-    var data = data.map(function (nested) {
+  promise.done(function(incoming) {
+    var incoming = incoming
+    var data = incoming.map(function (nested) {
       return nested.map(function (element) {
         return { x: element.date, y: element.percentage }
       })
     })
+    data = [ [ incoming[0][0].user, data[0] ], [incoming[1][0].user, data[1] ]]
     drawPercentsChart(data);
   })
 });
@@ -17,20 +19,20 @@ function drawPercentsChart(data) {
     type: 'line',
     data: {
       datasets: [{
-          label: "Weights",
+          label: data[0][0],
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
           borderColor: 'rgba(255,99,132,1)',
           borderWidth: 1,
           fill: false,
-          data: data[0]
+          data: data[0][1]
         },
         {
-          label: "w2",
+          label: data[1][0],
           backgroundColor: 'rgba(55,55,189,1)',
           borderColor: 'rgba(55,55,189,1)',
           borderWidth: 1,
           fill: false,
-          data: data[1]
+          data: data[1][1]
         }
       ]
     },
