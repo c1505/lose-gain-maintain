@@ -8,7 +8,7 @@ $(".competitions.show").ready(function() {
         return { x: element.date, y: element.percentage }
       })
     })
-    data = [ [ incoming[0][0].user, data[0] ], [incoming[1][0].user, data[1] ]]
+    data = [ [ incoming[0][0].user, data[0] ], [incoming[1][0].user, data[1] ], [incoming[2][0].user, data[2] ]]
     drawPercentsChart(data);
   })
 });
@@ -33,6 +33,14 @@ function drawPercentsChart(data) {
           borderWidth: 1,
           fill: false,
           data: data[1][1]
+        },
+        {
+          label: data[2][0],
+          backgroundColor: 'rgba(0,0,0,1)',
+          borderColor: 'rgba(0,0,0,0,1)',
+          borderWidth: 1,
+          fill: false,
+          data: data[2][1]
         }
       ]
     },
